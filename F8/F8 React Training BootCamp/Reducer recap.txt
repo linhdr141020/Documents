@@ -1,0 +1,43 @@
+import {useReducer,useRef} from 'react'
+import reducer, {initState} from './reducer'
+import {setJob, addJob,deleteJob} from './actions'
+function App() {
+  const [state, dispatch] = useReducer(reducer, initState)
+  const {job, jobs} = state
+
+  const inputRef = useRef()
+
+  console.log(state)
+  const handleSubmit = () => {
+    dispatch(addJob(job))
+    dispatch(setJob(''))
+
+    inputRef.current.focus()
+  }
+
+  return (
+    <div className="App" style={{padding: 20}}>
+      <h3>Todo</h3>
+      <input placeholder='Enter todo...'
+          ref={inputRef}
+          value={job}
+          onChange={e => {
+            dispatch(setJob(e.target.value))
+          }}
+      />
+      <button onClick={handleSubmit}> Add</button>
+      <ul>
+        {jobs.map((job,i)=>(
+          <li key={i}>{job} <span onClick={()=>dispatch(deleteJob(i))}>&times;</span></li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+export default App
+
+import TodoApp from './Todo'
+function App(){
+  return <TodoApp />
+}
+export default App

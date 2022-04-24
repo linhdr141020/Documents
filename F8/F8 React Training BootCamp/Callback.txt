@@ -1,0 +1,31 @@
+import {useState,memo,useCallback} from 'react'
+import Content from './Content'
+function App() {
+  
+  const [count, setCount] = useState(0)
+  const handleIncrease = useCallback(()=>{
+    setCount(prev => prev + 1)
+  },[])
+  return (
+    <div className="App" style={{padding: 20}}>
+      <h1>{count}</h1>
+      <Content onIncrease={handleIncrease} />
+      {/* <button onClick={increase}>Click</button> */}
+    </div>
+  );
+}
+export default App;
+
+import {memo} from 'react'
+
+function Content({onIncrease}){
+    console.log(123);
+    return (
+        <>
+            <h2>Hello moi nguoi</h2>
+            <button onClick={onIncrease}>Click</button>
+        </>
+    )
+}
+
+export default memo (Content)

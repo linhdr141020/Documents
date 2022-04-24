@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function PostItem({image,title,desc,published,data,callback}){//react component
+            console.log(data);
+            callback(Math.random())
+            return (
+                <div className="post-item"> //react element
+                    <img src={image} alt="" />
+                    <h2 className='post-title'>{title}</h2>
+                    <h2 className='post-desc'>{desc}</h2>
+                    <h2 className='post-published'>{published}</h2>
+                    <label htmlFor="email">email</label>
+                    <input type="text" id='email' />
+                </div>
+            )
+        }
+        function App(){
+            return (
+                <div id="wrapper">
+                    <PostItem 
+                        image='img.jpg'
+                        title='1C#(.NET) - Tuong tac voi nguoi dung'
+                        desc='1lorem ipsum'
+                        published='1 ngay truoc'
+                        data={[{a:1},{b:2}]}
+                        callback={(random)=>console.log('random: '+random)}
+                    />
+                    <PostItem 
+                        image='img.jpg'
+                        title='1C#(.NET) - Tuong tac voi nguoi dung'
+                        desc='1lorem ipsum'
+                        published='2 ngay truoc'
+                    />
+                </div>
+            )
+        }
+        ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+</body>
+</htm

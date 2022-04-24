@@ -1,0 +1,53 @@
+import {useState} from 'react'
+
+let orders = [100, 200, 300];
+function App(){
+  
+  const [counter, setCounter] = useState(() => {
+    let total = orders.reduce((total,cur) => total + cur)
+    console.log(total);
+    return total
+  })
+  
+  let handleIncrease = () => {
+    // setCounter(counter + 1)
+    setCounter(prevState => prevState + 1)
+    setCounter(prevState => prevState + 1)
+    setCounter(prevState => prevState + 1)
+  }
+  return (
+    <div className='App' style={{padding: 20}}>
+      <h1>{counter}</h1>
+      <button onClick={handleIncrease}>Increase</button>
+    </div>
+  )
+}
+export default App;
+
+import {useState} from 'react'
+
+let orders = [100, 200, 300];
+function App(){
+  
+  const [info, setInfo] = useState({
+    name: 'Nguyen Van A',
+    age: 18,
+    address: 'Ha Noi'
+  })
+  
+  let handleUpdate = () => {
+    setInfo(prev => {
+      return {
+        ...prev,
+        bio: "Yeu mau hong"
+      }
+    })
+  }
+  return (
+    <div className='App' style={{padding: 20}}>
+      <h1>{JSON.stringify(info)}</h1>
+      <button onClick={handleUpdate}>Increase</button>
+    </div>
+  )
+}
+export default App;

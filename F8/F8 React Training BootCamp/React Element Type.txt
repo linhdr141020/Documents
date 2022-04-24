@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="root"></div>
+    <script type="text/babel">
+    function Header(){
+        return (
+            <div className="header">New Header</div>
+        )
+    }
+        let app = (
+            <div className="wrapper">
+                <Header />
+                <div className="content">Content</div>
+                <div className="footer">Footer</div>
+            </div>
+        )
+        console.log(app);
+
+	    function Post(){
+        return (
+            <div className="post-item">
+                <img src="img.jpg" alt="" />
+                <h2 className="post-title">F8</h2>
+                <p className="post-desc">Hoc lap trinh</p>
+                <p className="post-published">Hoc React</p>
+            </div>
+        )
+    }
+    
+        function App(){
+            return (
+                <div id='wrapper'>
+                    Hello !
+                    <Post />
+                    <Post />
+                    <Post />
+                </div>
+            )
+        }
+        ReactDOM.render(app,document.querySelector('.root'))
+    </script>
+</body>
+</html>

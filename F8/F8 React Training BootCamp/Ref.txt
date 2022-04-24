@@ -1,0 +1,62 @@
+import {useEffect,useState,useRef} from 'react'
+
+function Content(){
+    let timerId = useRef();
+    const [count, setCount] = useState(60)
+    const handleStart = () => {
+        timerId.current = setInterval(()=> {
+            setCount(prev => prev - 1)
+        },1000)
+        console.log('Start',timerId);
+    }
+
+    const handleStop = () => {
+        clearInterval(timerId.current)
+        console.log('Stop',timerId);
+    }
+    return (
+        <div style={{padding: 20}}> 
+            <h1>{count}</h1>
+            <button onClick={handleStart}>Start</button>
+            <button onClick={handleStop}>Stop</button>
+        </div>
+    )
+}
+export default Content
+
+import {useEffect,useState,useRef} from 'react'
+
+function Content(){
+    let timerId = useRef();
+    const prevCount = useRef();
+    const h1Ref = useRef()
+
+    const [count, setCount] = useState(60)
+    const handleStart = () => {
+        timerId.current = setInterval(()=> {
+            setCount(prev => prev - 1)
+        },1000)
+        console.log('Start',timerId);
+    }
+
+    useEffect(()=>{
+        prevCount.current = count
+    },[count])
+
+    useEffect(()=>{
+        console.log(h1Ref.current);
+    })
+    const handleStop = () => {
+        clearInterval(timerId.current)
+        console.log('Stop',timerId);
+    }
+    console.log(count, prevCount.current)
+    return (
+        <div style={{padding: 20}}> 
+            <h1 ref={h1Ref}>{count}</h1>
+            <button onClick={handleStart}>Start</button>
+            <button onClick={handleStop}>Stop</button>
+        </div>
+    )
+}
+export default Content

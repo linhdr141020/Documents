@@ -1,0 +1,158 @@
+import {useState} from 'react'
+const gifts = [
+  'CPU 19',
+  'RAM 32GB RGB',
+  'RGB Keyboard'
+]
+function App() {
+  const [gift,setGift] = useState()
+
+  let randomGift = () => {
+    setGift(gifts[Math.floor(Math.random() * gifts.length)])
+  }
+  return (
+    <div className="App" style={{padding: 20}}>
+      <h1>{gift || 'Chua co phan thuong'}</h1>
+      <button onClick={randomGift}>Lay thuong</button>
+    </div>
+  );
+}
+export default App;
+
+import {useState} from 'react'
+const gifts = [
+  'CPU 19',
+  'RAM 32GB RGB',
+  'RGB Keyboard'
+]
+function App() {
+  const [name,setName] = useState()
+  console.log(name);
+  return (
+    <div className="App" style={{padding: 20}}>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={()=>setName('Nguyen Van BBB')}>Change</button>
+    </div>
+  );
+}
+export default App;
+
+import {useState} from 'react'
+
+function App() {
+  const [name,setName] = useState('')
+  const [email,setEmail] = useState('')
+  
+  const handleSubmit = () => {
+    console.log(name,email);
+  }
+  return (
+    <div className="App" style={{padding: 20}}>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <input
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      <button onClick={handleSubmit}>Register</button>
+    </div>
+  );
+}
+export default App;
+
+import {useState} from 'react'
+  const courses = [
+    {
+      id: 1,
+      name: 'HTML'
+    },
+    {
+      id: 2,
+      name: 'CSS'
+    },
+    {
+      id: 3,
+      name: 'REACTJS'
+    }
+  ]
+function App() {
+  const [checked,setChecked] = useState(2);
+  
+  const handleSubmit = () => {
+    console.log(checked);
+  }
+  return (
+    <div className="App" style={{padding: 20}}>
+      {
+        courses.map(course => (
+          <div key={course.id}>
+            <input type='radio'
+              onChange={()=> setChecked(course.id)}
+              checked={checked === course.id}
+            />
+            {course.name}
+          </div>
+        ))
+      }
+
+      <button onClick={handleSubmit}>Register</button>
+    </div>
+  );
+}
+export default App;
+
+import {useState} from 'react'
+  const courses = [
+    {
+      id: 1,
+      name: 'HTML'
+    },
+    {
+      id: 2,
+      name: 'CSS'
+    },
+    {
+      id: 3,
+      name: 'REACTJS'
+    }
+  ]
+function App() {
+  const [checked,setChecked] = useState([]);
+  console.log(checked);
+  const handleCheck = (id) => {
+    setChecked(prev => {
+      const isChecked = checked.includes(id)
+      if(isChecked){
+        return checked.filter(item => item != id)
+      }else{
+        return [...prev, id]
+      }
+    })
+  }
+  const handleSubmit = () => {
+    console.log(checked);
+  }
+  return (
+    <div className="App" style={{padding: 20}}>
+      {
+        courses.map(course => (
+          <div key={course.id}>
+            <input type='checkbox'
+              onChange={()=>handleCheck(course.id)}
+              checked={checked.includes(course.id)}
+            />
+            {course.name}
+          </div>
+        ))
+      }
+
+      <button onClick={handleSubmit}>Register</button>
+    </div>
+  );
+}
+export default App;

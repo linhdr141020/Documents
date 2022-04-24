@@ -1,0 +1,85 @@
+import {useState} from 'react'
+function App() {
+
+  const [counter, setCounter] = useState(1)
+  const handleIncrease = () => {
+    setCounter(counter + 1)
+  }
+  return (
+    <div className="App" style={{padding: 20}}>
+      <h1>{counter}</h1>
+      <button onClick={handleIncrease}>Increase</button>
+    </div>
+  );
+}
+
+export default App;
+
+import {useState} from 'react'
+function App() {
+
+  const [counter, setCounter] = useState(1)
+  const handleIncrease = () => {
+    setCounter(prev => prev + 1)
+    setCounter(prev => prev + 1)
+    setCounter(prev => prev + 1)
+  }
+  console.log('re-render');
+  return (
+    <div className="App" style={{padding: 20}}>
+      <h1>{counter}</h1>
+      <button onClick={handleIncrease}>Increase</button>
+    </div>
+  );
+}
+
+export default App;
+
+import {useState} from 'react'
+const orders = [100,200,300]
+function App() {
+  
+  const [counter, setCounter] = useState(()=> {
+    const total = orders.reduce((total,cur)=> total + cur)
+    console.log(total)
+    return total;
+  })
+  const handleIncrease = () => {
+    setCounter(prev => prev + 1)
+  }
+  console.log('re-render');
+  return (
+    <div className="App" style={{padding: 20}}>
+      <h1>{counter}</h1>
+      <button onClick={handleIncrease}>Increase</button>
+    </div>
+  );
+}
+
+export default App;
+
+import {useState} from 'react'
+function App() {
+  
+  const [info, setInfo] = useState({
+    name: 'Nhuyen Van A',
+    age: 18,
+    address: 'Ha Noi'
+  })
+
+  const handleInfo = () => {
+    setInfo(prev => ({
+      ...prev,
+      bio: 'Yeu mau hong'
+    }))
+  }
+  console.log('re-render');
+  return (
+    <div className="App" style={{padding: 20}}>
+      <h1>{JSON.stringify(info)}</h1>
+      <button onClick={handleInfo}>Increase</button>
+    </div>
+  );
+}
+
+export default App;

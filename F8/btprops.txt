@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+                let courses = [
+    {
+      "id": 2,
+      "category_id": 2,
+      "title": "HTML, CSS t? Zero ð?n Hero",
+      "slug": "html-css",
+      "description": "Trong khóa này chúng ta s? cùng nhau xây d?ng giao di?n 2 trang web là The Band & Shopee.",
+      "thumbnail": "courses/2.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "R6plN3FvzFY",
+      "preview_path": null,
+      "language": "html",
+      "syntax_highligh": "language-html",
+      "level": "Tr?nh ð? cõ b?n",
+      "priority": 10,
+      "students_count": 58566,
+      "created_at": "2020-04-10T14:23:13.000000Z",
+      "updated_at": "2021-10-08T10:23:33.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/2.png"
+    },
+    {
+      "id": 1,
+      "category_id": 1,
+      "title": "Javascript Cõ B?n",
+      "slug": "javascript-co-ban",
+      "description": "H?c Javascript cõ b?n phù h?p cho ngý?i chýa t?ng h?c l?p tr?nh. V?i hõn 100 bài h?c và có bài t?p th?c hành sau m?i bài h?c.",
+      "thumbnail": "courses/1.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "0SJE9dYdpps",
+      "preview_path": null,
+      "language": "javascript",
+      "syntax_highligh": "language-javascript",
+      "level": "Tr?nh ð? cõ b?n",
+      "priority": 30,
+      "students_count": 38083,
+      "created_at": "2020-06-10T14:23:13.000000Z",
+      "updated_at": "2021-10-08T10:22:03.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/1.png"
+    },
+    {
+      "id": 7,
+      "category_id": 4,
+      "title": "Ki?n Th?c Nh?p Môn",
+      "slug": "lessons-for-newbie",
+      "description": "Ð? có cái nh?n t?ng quan v? ngành IT - L?p tr?nh web các b?n nên xem các videos t?i khóa này trý?c nhé.",
+      "thumbnail": "courses/7.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "M62l1xA5Eu8",
+      "preview_path": null,
+      "language": null,
+      "syntax_highligh": null,
+      "level": "Tr?nh ð? cõ b?n",
+      "priority": 0,
+      "students_count": 33249,
+      "created_at": "2020-02-10T14:23:13.000000Z",
+      "updated_at": "2021-10-08T10:14:39.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/7.png"
+    },
+    {
+      "id": 3,
+      "category_id": 2,
+      "title": "Responsive V?i Grid System",
+      "slug": "responsive-web-design",
+      "description": "Trong khóa này chúng ta s? h?c v? cách xây d?ng giao di?n web responsive v?i Grid System, týõng t? Bootstrap 4.",
+      "thumbnail": "courses/3.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "uz5LIP85J5Y",
+      "preview_path": null,
+      "language": "html",
+      "syntax_highligh": "language-html",
+      "level": "Tr?nh ð? cõ b?n",
+      "priority": 20,
+      "students_count": 13405,
+      "created_at": "2020-05-10T14:23:13.000000Z",
+      "updated_at": "2021-10-08T10:24:33.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/3.png"
+    },
+    {
+      "id": 6,
+      "category_id": 3,
+      "title": "Node & ExpressJS",
+      "slug": "nodejs",
+      "description": "H?c Back-end v?i Node & ExpressJS framework, hi?u các khái ni?m khi làm Back-end và xây d?ng RESTful API cho trang web.",
+      "thumbnail": "courses/6.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "z2f7RHgvddc",
+      "preview_path": null,
+      "language": "javascript",
+      "syntax_highligh": "language-javascript",
+      "level": "Tr?nh ð? cõ b?n",
+      "priority": 32,
+      "students_count": 11224,
+      "created_at": "2020-08-01T14:23:13.000000Z",
+      "updated_at": "2021-10-08T09:58:36.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/6.png"
+    },
+    {
+      "id": 5,
+      "category_id": 2,
+      "title": "HTML, CSS Tips & Tricks",
+      "slug": "html-css-tutorials",
+      "description": "Tutorials v? HTML, CSS, UI, UX s? ðý?c t?ng h?p t?i khóa h?c này, các video có n?i dung ng?n g?n, súc tích giúp h?c viên có th? ?ng d?ng ngay vào th?c t?",
+      "thumbnail": "courses/5.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "nB6cJh_bb1U",
+      "preview_path": null,
+      "language": "html",
+      "syntax_highligh": "language-html",
+      "level": "Tr?nh ð? cõ b?n",
+      "priority": 40,
+      "students_count": 8483,
+      "created_at": "2020-03-10T14:23:13.000000Z",
+      "updated_at": "2021-10-08T09:39:01.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/5.png"
+    },
+    {
+      "id": 12,
+      "category_id": 1,
+      "title": "Javascript Nâng Cao",
+      "slug": "javascript-nang-cao",
+      "description": "Hi?u sâu hõn v? cách Javascript ho?t ð?ng, t?m hi?u v? IIFE, closure, reference types, this keyword, bind, call, apply, prototype, ...",
+      "thumbnail": "courses/12.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "MGhw6XliFgo",
+      "preview_path": null,
+      "language": "javascript",
+      "syntax_highligh": "language-javascript",
+      "level": "Tr?nh ð? nâng cao",
+      "priority": 31,
+      "students_count": 6876,
+      "created_at": "2021-04-03T14:23:13.000000Z",
+      "updated_at": "2021-10-08T08:57:06.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/12.png"
+    },
+    {
+      "id": 13,
+      "category_id": 0,
+      "title": "ReactJS",
+      "slug": "reactjs",
+      "description": "Khóa h?c ReactJS t? cõ b?n t?i nâng cao, k?t qu? c?a khóa h?c này là b?n có th? làm h?u h?t các d? án thý?ng g?p v?i ReactJS. Cu?i khóa h?c này b?n s? s? h?u m?t d? án gi?ng Tiktok.com, b?n có th? t? tin ði xin vi?c khi n?m ch?c các ki?n th?c ðý?c chia s? trong khóa h?c này.",
+      "thumbnail": "courses/13/13.png",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "x0fSBAgBrOQ",
+      "preview_path": null,
+      "language": "javascript",
+      "syntax_highligh": "language-jsx",
+      "level": "Tr?nh ð? trung b?nh",
+      "priority": 0,
+      "students_count": 4829,
+      "created_at": null,
+      "updated_at": "2021-10-08T10:19:06.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/13/13.png"
+    },
+    {
+      "id": 4,
+      "category_id": 1,
+      "title": "Don't Touch Your Face",
+      "slug": "tool-canh-bao-so-len-mat",
+      "description": "Xây d?ng ?ng d?ng ðýa ra c?nh báo khi ngý?i dùng s? tay lên m?t. Chúng ta s? s? d?ng thý vi?n ReactJS & Tensoflow ð? hoàn thi?n ?ng d?ng này.",
+      "thumbnail": "courses/4/4.jpeg",
+      "content": null,
+      "preview_origin": "youtube",
+      "preview_youtube_id": "r6GWbQL-qwA",
+      "preview_path": null,
+      "language": "javascript",
+      "syntax_highligh": "language-javascript",
+      "level": "Tr?nh ð? cõ b?n",
+      "priority": 50,
+      "students_count": 3260,
+      "created_at": "2020-01-10T14:23:13.000000Z",
+      "updated_at": "2021-10-08T09:58:46.000000Z",
+      "thumbnail_cdn": "https://cdn.fullstack.edu.vn/f8-learning/courses/4/4.jpeg"
+    }
+  ]
+    const CourseItem = (props) => {
+        return (
+            <div>
+            <img src={props.img} alt="" />
+            <h1>{props.title}</h1>
+            <h2>{props.description}</h2>
+            <h3>{props.level}</h3>
+        </div>
+        )
+    }
+        function App(){
+            return (
+                <div id="wrapper">
+                    {
+                        courses.map(course => (
+                            <CourseItem
+                                key={course.id}
+                                img={course.thumbnail_cdn}
+                                title={course.title}
+                                description={course.description}
+                                level={course.level}
+                            />
+                        ))
+                    }
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+</body>
+</htm
+
+   const CourseItem = ({course}) => {
+        return (
+        <div>
+            <img src={course.thumbnail_cdn} alt="" />
+            <h1>{course.title}</h1>
+            <h2>{course.description}</h2>
+            <h3>{course.level}</h3>
+        </div>
+        )
+    }
+        function App(){
+            return (
+                <div id="wrapper">
+                    {
+                        courses.map(course => (
+                            <CourseItem
+                                key={course.id}
+                                course = {course}
+                            />
+                        ))
+                    }
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))

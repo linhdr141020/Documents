@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="root"></div>
+    <script type="text/babel">
+        // let course = 'React Course'
+        // const ul = <ul className='courselist'>
+        //         <li style={{color: 'red'}}>JS</li>
+        //         <li>{course}</li>
+        //     </ul>
+        // ReactDOM.render(ul,document.querySelector('.root'))
+        let courses = [
+            {
+                name: 'HTML,CSS'
+            },
+            {
+                name: 'Responsive web'
+            },
+            {
+                name: 'React JS'
+            },
+        ]
+        let ul = <ul>
+                    {
+                        courses.map(el => {
+                           return <li>{el.name}</li>
+                        })
+                    }
+                </ul>
+        ReactDOM.render(ul,document.querySelector('.root'))
+    </script>
+</body>
+</html>

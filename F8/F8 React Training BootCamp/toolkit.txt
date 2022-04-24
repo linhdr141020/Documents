@@ -1,0 +1,45 @@
+import { useDispatch, useSelector } from "react-redux";
+import { increment } from "./redux/CounterSlice";
+import { decrement } from "./redux/CounterSlice";
+
+function App(){
+  const dispatch = useDispatch()
+  const value = useSelector(state => state.counter.value)
+  return (
+    <div>
+      <h1>{value}</h1>
+      <button onClick={()=>dispatch(increment())}>Incre</button>
+      <button onClick={()=>dispatch(decrement())}>Decre</button>
+    </div>
+  )
+}
+export default App;
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const counterSlice = createSlice({
+    name: 'counter',
+    initialState:{
+        value:0
+    },
+    reducers:{
+        increment:(state,payload) => { //action constant,action creator=increment(),case increment
+            state.value += 1
+        },
+        decrement:(state,payload) => { //action constant,action creator=increment(),case increment
+            state.value -= 1
+        }
+    }
+})
+export const counterReducer = counterSlice.reducer
+export const {increment,decrement} = counterSlice.actions
+
+import { configureStore } from "@reduxjs/toolkit";
+import { counterReducer } from "./redux/CounterSlice";
+
+const store = configureStore({
+    reducer:{
+        counter: counterReducer,
+    }
+})
+export default store
