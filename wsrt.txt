@@ -1,0 +1,139 @@
+const express = require('express')
+const {ApolloServer} = require('apollo-server-express')
+
+const typeDefs = require('./schema/schema')
+const resolvers = require('./resolver/resolver')
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers
+})
+
+const app = express()
+server.applyMiddleware({app})
+
+app.listen({port: 4000},()=>{
+    console.log(`Server ready at http://localhost:4000${server.graphqlPath}`);
+})
+
+const {gql} = require('apollo-server-express')
+
+const typeDefs = gql`
+    type Book {
+        id: ID,
+        name: String,
+        genre: String
+        author: Author
+    }
+
+    type Author {
+        id: ID!,
+        name: String,
+        age: Int
+        books: [Book]
+    }
+
+    # ROOT TYPE
+    type Query {
+        books: [Book]
+        book(id: ID!):Book
+        authors: [Author]
+        author(id: ID!):Author
+    }
+
+    type Mutation {
+        createAuthor(id : ID!,name: String,age: Int): Author
+        createBook(id: ID!,name: String,genre: String,authorId: ID!): Book
+    }
+`
+module.exports = typeDefs
+
+const {books, authors} = require('../data/static')
+
+const resolvers = {
+    //QUERY
+    Query: {
+        books: () => books,
+        book:(parent,args) => books.find(book => book.id == args.id),
+        authors: ()=> authors,
+        author: (parent, args) => authors.find(author => author.id == args.id)
+    },
+    Book: {
+        author: (parent,args) => {
+            return authors.find(author => author.id == parent.authorId)
+        }
+    },
+    Author: {
+        books: (parent,args) => books.filter(book => book.authorId == parent.id)
+    },
+
+    //MUTATION
+    Mutation:{
+        createAuthor: (parent,args) => args,
+        createBook: (parent,args) => args
+
+    }
+}
+module.exports = resolvers
+
+const books = [
+	{
+		id: 1,
+		name: 'Tat den',
+		genre: 'Tieu thuyet',
+		authorId: 1
+	},
+	{
+		id: 2,
+		name: 'Chi Pheo',
+		genre: 'Truyen ngan',
+		authorId: 2
+	},
+	{
+		id: 3,
+		name: 'So do',
+		genre: 'Tieu thuyet',
+		authorId: 3
+	},
+	{
+		id: 4,
+		name: 'Doi thua',
+		genre: 'Truyen ngan',
+		authorId: 2
+	},
+	{
+		id: 5,
+		name: 'Song mon',
+		genre: 'Tieu thuyet',
+		authorId: 2
+	},
+	{
+		id: 6,
+		name: 'Ky nghe lay Tay',
+		genre: 'Phong su',
+		authorId: 3
+	}
+]
+
+const authors = [
+	{
+		id: 1,
+		name: 'Ngo Tat To',
+		age: 127
+	},
+	{
+		id: 2,
+		name: 'Nam Cao',
+		age: 106
+	},
+	{
+		id: 3,
+		name: 'Vu Trong Phung',
+		age: 109
+	}
+]
+
+module.exports = {
+	books,
+	authors
+}
